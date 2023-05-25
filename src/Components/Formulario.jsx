@@ -17,6 +17,7 @@ const Formulario = () => {
         brown: '#800000'
     }
 
+    /*
     function cambiaColor()
     {
         setColor(generaColor());
@@ -31,8 +32,24 @@ const Formulario = () => {
             colorAleatorio += letras[Math.floor(Math.random()*16)];
         }
         return colorAleatorio;
+    }*/
+
+
+    const handleColorName = (e) =>
+    {
+        const valorColor = e.target.value.toLowerCase();
+        setNombreColor(valorColor);
+        const codigoColor = colores[valorColor];
+        if(codigoColor)
+        {
+            setColor(codigoColor);
+        }else
+        {
+            setColor('');
+        }
     }
 
+    /*
     const handleSubmit = (e) => 
     {
         e.preventDefault();
@@ -45,7 +62,7 @@ const Formulario = () => {
         {
             setColor('');
         }
-    }
+    }*/
 
     return (
         <div>
@@ -59,7 +76,8 @@ const Formulario = () => {
                         <Form>
                             <Form.Group controlId="color" className="d-flex justify-content-between">
                                 <Form.Control type="text" placeholder="Ingrese el nombre del color"
-                                onChange={(e)=>setColor(e.target.value)} />
+                                value={nombeColor}
+                                onChange={handleColorName} />
                                 <Button type="submit" variant="primary" className="mt-2 mx-3">Guardar</Button>
                             </Form.Group>
                         </Form>
