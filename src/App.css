@@ -1,0 +1,12 @@
+#root{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  min-width: 100%;
+  background: rgb(34,193,195);
+  background: linear-gradient(216deg, rgba(34,193,195,1) 12%, rgba(34,193,195,1) 41%, rgba(39,188,197,1) 54%, rgba(108,116,225,1) 67%, rgba(111,113,226,1) 80%, rgba(177,45,253,1) 96%);
+}
+
+.mainPage{
+  flex-grow: 1;
+}
