@@ -1,8 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Card, Form } from "react-bootstrap";
+import ContenedorColores from "./contenedorColores";
+
 const Formulario = () => {
     const [color, setColor] = useState('');
-    const [nombeColor, setNombreColor] = useState('');
+    const [nombreColor, setNombreColor] = useState('');
+    const [coloresGuardados, setColoresGuardados] = useState(
+        JSON.parse(localStorage.getItem('colores')) || []);
     
     const colores = {
         red: '#FF0000',
@@ -49,11 +53,28 @@ const Formulario = () => {
         }
     }
 
+    useEffect(() => {
+        localStorage.setItem('colores', JSON.stringify(coloresGuardados));
+    }, [coloresGuardados]);
+
+    function validaColor(colorIngresado)
+    {
+        //const colorIngresado = e.target.value.toLowerCase();
+        if(colores[colorIngresado])
+        {
+            return true;
+        }else
+        {
+            alert('El color que se intenta ingresar no esta almacendao.\n Intente nuevamente :(');
+            return false;
+        }
+    }
+
     /*
     const handleSubmit = (e) => 
     {
         e.preventDefault();
-        const colorValue = nombeColor.toLowerCase();
+        const colorValue = nombreColor.toLowerCase();
         const codigoColor = colores[colorValue];
         if(codigoColor)
         {
@@ -73,10 +94,18 @@ const Formulario = () => {
                         <Card.Img style={{backgroundColor: color, width: '150px', height:'150px'}}></Card.Img>
                     </section>
                     <section className="mx-auto w-100 p-4">
-                        <Form>
+                        <Form onSubmit={(e) => {
+                            e.preventDefault();
+                            
+                            if(validaColor(nombreColor))
+                            {
+                                setColoresGuardados([...coloresGuardados, nombreColor]);
+                                setNombreColor[''];
+                            }
+                        }}>
                             <Form.Group controlId="color" className="d-flex justify-content-between">
                                 <Form.Control type="text" placeholder="Ingrese el nombre del color"
-                                value={nombeColor}
+                                value={nombreColor}
                                 onChange={handleColorName} />
                                 <Button type="submit" variant="primary" className="mt-2 mx-3">Guardar</Button>
                             </Form.Group>
@@ -84,6 +113,7 @@ const Formulario = () => {
                     </section>
                 </Card.Body>
             </Card>
+            <ContenedorColores arregloColores={colores} coloresGuardados={coloresGuardados}/>
         </div>
     );
 };
