@@ -1,8 +1,6 @@
 import { Card } from "react-bootstrap";
 
 const CardsColores = ({color, codigoColor}) => {
-    //console.log(color);
-    //console.log(codigoColor);
     return (
         <div>
             <Card>

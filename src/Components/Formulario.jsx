@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Button, Card, Form } from "react-bootstrap";
-import ContenedorColores from "./contenedorColores";
+import ContenedorColores from "./ContenedorColores";
 
 const Formulario = () => {
     const [color, setColor] = useState('');
@@ -20,24 +20,6 @@ const Formulario = () => {
         pink: '#FFC0CB',
         brown: '#800000'
     }
-
-    /*
-    function cambiaColor()
-    {
-        setColor(generaColor());
-    }
-
-    function generaColor()
-    {
-        const letras = '0123456789ABCDEF';
-        let colorAleatorio = '#';
-        for(let i = 0; i < 6; i++)
-        {
-            colorAleatorio += letras[Math.floor(Math.random()*16)];
-        }
-        return colorAleatorio;
-    }*/
-
 
     const handleColorName = (e) =>
     {
@@ -59,7 +41,6 @@ const Formulario = () => {
 
     function validaColor(colorIngresado)
     {
-        //const colorIngresado = e.target.value.toLowerCase();
         if(colores[colorIngresado])
         {
             return true;
@@ -69,21 +50,6 @@ const Formulario = () => {
             return false;
         }
     }
-
-    /*
-    const handleSubmit = (e) => 
-    {
-        e.preventDefault();
-        const colorValue = nombreColor.toLowerCase();
-        const codigoColor = colores[colorValue];
-        if(codigoColor)
-        {
-            setColor(codigoColor);
-        }else
-        {
-            setColor('');
-        }
-    }*/
 
     return (
         <div>
